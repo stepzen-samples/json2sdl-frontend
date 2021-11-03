@@ -1,3 +1,5 @@
+* { box-sizing: border-box; }
+
 .ace_gutter {
   display: none !important;
 }
@@ -170,8 +172,11 @@ pre {
   .create-mobile {
     display: none;
   }
+}
+
+@media screen and (max-width: 919px) {
   .site-nav {
-    justify-content: flex-start;
+    justify-content: space-between;
   }
 }
 
@@ -210,4 +215,8 @@ pre {
 
 .ace-jsoneditor .ace_cursor {
   border-left: 2px solid #FFFFFF;
+}
+
+.ace-jsoneditor .ace_marker-layer .ace_selection {
+  background: rgba(178,207,249, .3)
 }
