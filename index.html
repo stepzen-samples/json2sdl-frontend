@@ -1,0 +1,335 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSON2SDL</title>
+    <link rel="icon" type="image/png" href="./images/favicon-32x32.png"/>
+    <meta name="description" content="Convert JSON to Schema Definition Language (SDL)." />
+    <meta name="keywords" content="json, graphql, schema" />
+    <link rel="icon" href="./images/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#19253f" />
+    <meta name="og:title" content="JSON2SDL" />
+    <meta name="og:site_name" content="JSON2SDL" />
+    <meta name="og:type" content="website" />
+    <meta name="og:url" content="https://json2sdl.com" />
+    <meta name="og:image" content="./images/social-share.jpg" />
+    <meta name="og:locale" content="en_US" />
+    <meta name="twitter:creator" content="@stepzen_dev" />
+    <meta name="twitter:site" content="@stepzen_dev" />
+    <meta name="twitter:card" content="summary" />
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/9.5.4/jsoneditor.min.js"
+      integrity="sha512-XqPEV4ZPCp2ukA6CiSf3yfznfTfyXHmtuwkRwzStFNrDjQsm4SM13FBJ3eJ9joy9kLhKSuYSkjm7QYB0uHxPHg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"
+      referrerpolicy="no-referrer"
+    ></script>
+    <style>
+      button:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+    </style>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./custom.css" />
+  </head>
+
+  <body>
+    <div class="dark-layer"></div>
+    <header class="site-header" id="SiteHeader">
+      <div class="container">
+        <nav class="site-nav">
+          <p class="header-text">Join</p>
+          <a href="https://stepzen.com" class="site-header-logo">
+            <img src="./images/stepzen-logo.png" alt="StepZen" />
+          </a>
+          <p class="header-text">to build your own GraphQL API</p>
+          <ul class="mr-20 create-mobile">
+            <a href="https://stepzen.com/signup" class="button color11">
+              <span class="user-nav">Create a Free Account</span>
+            </a>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="hero interactive-hero">
+        <div class="container">
+          <form
+            action="/"
+            method="POST"
+            x-data="jsonForm()"
+            @submit.prevent="submitData"
+            class="codedemo-form"
+          >
+            <header class="hero-header">
+              <h1 class="json-header">
+                JSON<span class="two-text">{2}</span>SDL
+              </h1>
+              <div class="starter-buttons">
+                <button
+                  id="form-button"
+                  @click.self="handleClick()"
+                  class="color7 start-button"
+                >
+                  Start with an example
+                </button>
+                <a href="https://stepzen.com/signup" class="button color11">
+                  <span class="user-nav">Create a Free Account</span>
+                </a>
+              </div>
+            </header>
+            <div class="hero-content">
+              <section class="codedemo">
+                <div class="codedemo-display">
+                  <div class="codedemo-input">
+                    <span class="codedemo-tab">
+                      <span id="form-span"> Enter Your JSON </span>
+                      <button class="json-button" :disabled="loading">
+                        <span>
+                          &#9658;
+                        </span>
+                        <span> Convert </span>
+                      </button>
+                    </span>
+                    <hr class="divider" />
+                    <div class="codedemo-codeWrap">
+                      <div class="codedemo-code">
+                        <div id="jsoneditor" class="h-96"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="codedemo-output">
+                    <span class="codedemo-tabResult">
+                      <span id="form-span"> Output SDL </span>
+                      <button
+                        class="json-button"
+                        id="copy-button"
+                        data-clipboard-target="#sdl"
+                        type="button"
+                      >
+                        <span class="clipboard">
+                          &#x2398
+                        </span>
+                        <span> Copy </span>
+                      </button>
+                    </span>
+                    <hr class="divider" />
+                    <div class="codedemo-codeResult">
+                      <div class="codedemo-code">
+                        <pre id="sdl" x-text="message"></pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+    <script>
+      var cb = new ClipboardJS("#copy-button");
+      // create the editor
+      const container = document.getElementById("jsoneditor");
+      const options = { mode: "code", mainMenuBar: false };
+      const editor = new JSONEditor(container, options);
+      editor.set({});
+
+      function restForm() {
+        return {
+          rest: {
+            url: "",
+            headers: "",
+          },
+
+          submitRest() {
+            fetch(this.rest.url, {
+              method: "GET",
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                editor.set(data);
+              })
+              .catch((err) => {
+                console.log(err);
+              })
+              .finally(() => {});
+          },
+        };
+      }
+
+      function jsonForm() {
+        return {
+          formData: {
+            object: "Root",
+            prefix: "",
+            json: "",
+          },
+          message: "",
+          loading: false,
+          buttonLabel: "Convert",
+
+          submitData() {
+            const j = JSON.stringify(editor.get());
+            this.buttonLabel = "Submitting...";
+            this.loading = true;
+            this.message = "";
+            const body = JSON.stringify({
+              operationName: "MyQuery",
+              query: `query MyQuery($json: String! $type: String $prefix: String) {
+                  generateSDLFromJson(json: $json, topObjectType: $type, typePrefix: $prefix) {
+                      sdl
+                      messages
+                  }
+              }`,
+              variables: {
+                json: j,
+                type: this.formData.object,
+                prefix: this.formData.prefix,
+              },
+            });
+            fetch("https://demo.stepzen.net/utilities/json2sdl/__graphql", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: body,
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                this.message = data.data.generateSDLFromJson.sdl;
+              })
+              .catch((err) => {
+                console.log(err);
+                this.message = "Ooops! Something went wrong!";
+              })
+              .finally(() => {
+                this.loading = false;
+                this.buttonLabel = "Submit";
+              });
+          },
+        };
+      }
+      function handleClick() {
+        editor.set({
+          id: "8bd96804-d1c5-4657-a081-0e8eb0bf3881",
+          index: 56,
+          period: 1,
+          timestamp: "00:01:03.663",
+          minute: 1,
+          second: 3,
+          type: {
+            id: 30,
+            name: "Pass",
+          },
+          possession: 3,
+          possession_team: {
+            id: 217,
+            name: "Barcelona",
+          },
+          play_pattern: {
+            id: 1,
+            name: "Regular Play",
+          },
+          team: {
+            id: 217,
+            name: "Barcelona",
+          },
+          player: {
+            id: 5213,
+            name: "Gerard Piqué Bernabéu",
+          },
+          position: {
+            id: 3,
+            name: "Right Center Back",
+          },
+          location: [64.0, 53.0],
+          duration: 1.423,
+          under_pressure: true,
+          related_events: [
+            "98a4ab62-61cb-4ff3-a959-98183a8ecf97",
+            "dbc7fbbf-7510-47b5-b0ab-e497f59066b9",
+          ],
+          pass: {
+            recipient: {
+              id: 5503,
+              name: "Lionel Andrés Messi Cuccittini",
+            },
+            length: 28.653097,
+            angle: 1.060308,
+            height: {
+              id: 1,
+              name: "Ground Pass",
+            },
+            end_location: [78.0, 78.0],
+            body_part: {
+              id: 40,
+              name: "Right Foot",
+            },
+          },
+        });
+      }
+      function Form() {
+        return {
+          formData: {
+            object: "Root",
+            prefix: "",
+            json: "",
+          },
+          message: "",
+          loading: false,
+          buttonLabel: "Submit",
+
+          submitData() {
+            const j = JSON.stringify(editor.get());
+            this.buttonLabel = "Submitting...";
+            this.loading = true;
+            this.message = "";
+            const body = JSON.stringify({
+              operationName: "MyQuery",
+              query: `query MyQuery($json: String! $type: String $prefix: String) {
+                  generateSDLFromJson(json: $json, topObjectType: $type, typePrefix: $prefix) {
+                      sdl
+                      messages
+                  }
+              }`,
+              variables: {
+                json: j,
+                type: this.formData.object,
+                prefix: this.formData.prefix,
+              },
+            });
+            fetch("https://demo.stepzen.net/utilities/json2sdl/__graphql", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: body,
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                this.message = data.data.generateSDLFromJson.sdl;
+              })
+              .catch((err) => {
+                console.log(err);
+                this.message = "Ooops! Something went wrong!";
+              })
+              .finally(() => {
+                this.loading = false;
+                this.buttonLabel = "Submit";
+              });
+          },
+        };
+      }
+    </script>
+  </body>
+</html>
