@@ -4,6 +4,10 @@
   display: none !important;
 }
 
+.ace-jsoneditor.ace_editor, pre {
+  font-family: var(--font-code);
+}
+
 .ace-jsoneditor .ace_scroller {
   background-color: transparent !important;
 }
@@ -166,11 +170,17 @@ pre {
   .codedemo-input {
     margin-bottom: 20px;
   }
+  .codedemo-display {
+    max-height: 230px;
+  }
 }
 
 @media screen and (max-width: 400px) {
   .create-mobile {
     display: none;
+  }
+  .two-text {
+    font-size: 33px;
   }
 }
 
@@ -220,3 +230,22 @@ pre {
 .ace-jsoneditor .ace_marker-layer .ace_selection {
   background: rgba(178,207,249, .3)
 }
+
+/* .no-scroll {
+  overflow: hidden;
+  overflow-y: hidden
+}
+
+body.no-scroll.container {
+  overflow: visible;
+  overflow-y: visible;
+  height: auto;
+} */
+
+/* .ace_scroller, .ace_scrollbar, .codedemo-codeWrap, .codedemo-display, .jsoneditor {
+  overflow: hidden;
+} */
+
+/* .codedemo-display {
+  max-height: 200px;
+} */
