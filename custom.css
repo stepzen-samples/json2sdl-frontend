@@ -1,5 +1,16 @@
 * { box-sizing: border-box; }
 
+.no-scroll {
+  overflow: hidden;
+  overflow-y: hidden
+}
+
+body.no-scroll.container {
+  overflow: visible;
+  overflow-y: visible;
+  height: auto;
+}
+
 .ace_gutter {
   display: none !important;
 }
@@ -166,12 +177,23 @@ pre {
   padding: 0 5px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 599px) {
   .codedemo-input {
     margin-bottom: 20px;
   }
   .codedemo-display {
     max-height: 230px;
+  }
+  .no-scroll {
+    height: calc(100vh + 50px);
+  }
+  .code {
+    max-width: 350px
+  }
+  .no-scroll {
+    height: calc(100vh + 100px);
+    overflow: visible;
+    overflow-y: visible;
   }
 }
 
@@ -231,21 +253,6 @@ pre {
   background: rgba(178,207,249, .3)
 }
 
-/* .no-scroll {
-  overflow: hidden;
-  overflow-y: hidden
+.ace_mobile-menu, .ace_mobile-button {
+  display: none;
 }
-
-body.no-scroll.container {
-  overflow: visible;
-  overflow-y: visible;
-  height: auto;
-} */
-
-/* .ace_scroller, .ace_scrollbar, .codedemo-codeWrap, .codedemo-display, .jsoneditor {
-  overflow: hidden;
-} */
-
-/* .codedemo-display {
-  max-height: 200px;
-} */
