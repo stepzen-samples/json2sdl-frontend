@@ -3,17 +3,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JSON2SDL</title>
-    <link rel="icon" type="image/png" href="./images/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" href="./assets/images/favicon-32x32.png"/>
     <meta name="description" content="Convert JSON to Schema Definition Language (SDL)." />
     <meta name="keywords" content="json, graphql, schema" />
-    <link rel="icon" href="./images/favicon.ico" />
+    <link rel="icon" href="./assets/images/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#19253f" />
     <meta name="og:title" content="JSON2SDL" />
     <meta name="og:site_name" content="JSON2SDL" />
     <meta name="og:type" content="website" />
     <meta name="og:url" content="https://json2sdl.com" />
-    <meta name="og:image" content="./images/social-share.jpg" />
+    <meta name="og:image" content="./assets/images/social-share.jpg" />
     <meta name="og:locale" content="en_US" />
     <meta name="twitter:creator" content="@stepzen_dev" />
     <meta name="twitter:site" content="@stepzen_dev" />
@@ -43,110 +43,156 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"
       referrerpolicy="no-referrer"
     ></script>
-    <style>
-      button:disabled {
-        cursor: not-allowed;
-        opacity: 0.5;
-      }
-    </style>
-    <link rel="stylesheet" href="./styles.css" />
-    <link rel="stylesheet" href="./custom.css" />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <link rel="stylesheet" href="./assets/css/custom.css" />
   </head>
 
   <body class="no-scroll">
-    <div class="dark-layer"></div>
-    <header class="site-header" id="SiteHeader">
-      <div class="container">
-          <nav class="site-nav">
-            <p class="header-text">Join</p>
-            <a href="https://stepzen.com" class="site-header-logo">
-              <img src="./images/stepzen-logo.png" alt="StepZen" />
+    <div class="app">
+      <main>
+    <!--
+      <div class="banner hidden" role="banner">
+        <p>
+            Join
+            <a href="https://stepzen.com" class="site-header-logo"><img 
+                src="./assets/images/stepzen-logo.png" 
+                alt="StepZen"
+                height="36" /></a>
+            to build your own GraphQL API
+            <a href="https://stepzen.com/signup" class="button color11">
+              <span>Create a Free Account</span>
             </a>
-            <p class="header-text">to build your own GraphQL API</p>
-            <ul class="mr-20 create-mobile">
-              <a href="https://stepzen.com/signup" class="button color11">
-                <span class="user-nav">Create a Free Account</span>
-              </a>
-            </ul>
-          </nav>
+          </p>
       </div>
-    </header>
-    <main>
-      <div class="hero interactive-hero">
-        <div class="container code">
-          <form
-            action="/"
-            method="POST"
-            x-data="jsonForm()"
-            @submit.prevent="submitData"
-            class="codedemo-form"
-          >
-            <header class="hero-header">
-              <h1 class="json-header">
-                JSON<span class="two-text">{2}</span>SDL
-              </h1>
-              <div class="starter-buttons">
-                <button
-                  id="form-button"
-                  @click.self="handleClick()"
-                  class="color7 start-button"
-                >
-                  Start with an example
-                </button>
-                <a href="https://stepzen.com/signup" class="button color11">
-                  <span class="user-nav">Create a Free Account</span>
-                </a>
-              </div>
-            </header>
-            <div class="hero-content">
-              <section class="codedemo">
-                <div class="codedemo-display">
-                  <div class="codedemo-input">
-                    <span class="codedemo-tab">
-                      <span id="form-span"> Enter Your JSON </span>
-                      <button class="json-button" :disabled="loading">
+    -->
+      <div class="container">
+        <form
+          action="/"
+          method="POST"
+          x-data="jsonForm()"
+          @submit.prevent="submitData"
+          class="codedemo-form"
+        >
+          <header class="app-header">
+            <h1 class="sr-only">JSON2SDL</h1>
+            <img 
+              src="./assets/images/json2sdl.svg" 
+              alt="JSON2SDL"
+              height="50" />
+
+            <div class="app-buttons">
+              <button
+                id="form-button"
+                @click.self="handleClick()"
+                class="button secondary color7"
+              >
+                <span>Start with an example</span>
+              </button>
+              <a href="https://stepzen.com/signup" class="button color11">
+                <span>Create a Free Account</span>
+              </a>
+            </div>
+          </header>
+
+            <section class="codedemo">
+              <div class="codedemo-display">
+                <div class="codedemo-input">
+                  <div class="codedemo-tab">
+                    <h2 class="codedemo-tab-heading">Enter Your JSON</h2>
+                    <button 
+                      class="button secondary" :disabled="loading">
+                      <span>
                         <span>
-                          &#9658;
+                          <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M13.43 7.54618C14.19 8.02178 14.19 9.27234 13.43 9.74794L1.61943 17.1389C0.889926 17.5954 -1.69635e-06 16.9904 -1.65472e-06 16.038L-1.00858e-06 1.25614C-9.6695e-07 0.303707 0.889926 -0.30126 1.61943 0.155256L13.43 7.54618Z" fill="currentColor"/>
+                          </svg>
+
                         </span>
-                        <span> Convert </span>
-                      </button>
-                    </span>
-                    <hr class="divider" />
-                    <div class="codedemo-codeWrap">
-                      <div class="codedemo-code">
-                        <div id="jsoneditor" class="h-96"></div>
-                      </div>
-                    </div>
+                        <span>Convert</span>
+                      </span>
+                    </button>
                   </div>
-                  <div class="codedemo-output">
-                    <span class="codedemo-tabResult">
-                      <span id="form-span"> Output SDL </span>
-                      <button
-                        class="json-button"
-                        id="copy-button"
-                        data-clipboard-target="#sdl"
-                        type="button"
-                      >
-                        <span class="clipboard">
-                          &#x2398
-                        </span>
-                        <span> Copy </span>
-                      </button>
-                    </span>
-                    <hr class="divider" />
-                    <div class="codedemo-codeResult">
-                      <div class="codedemo-code">
-                        <pre id="sdl" x-text="message"></pre>
-                      </div>
+                  <div class="codedemo-codeWrap">
+                    <div class="codedemo-code">
+                      <div id="jsoneditor"></div>
                     </div>
                   </div>
                 </div>
-              </section>
-            </div>
-          </form>
-        </div>
+                <div class="codedemo-output">
+                  <div class="codedemo-tab codedemo-tabResult">
+                    <h2 class="codedemo-tab-heading">Output SDL</h2>
+                    <button
+                      class="button code secondary"
+                      id="copy-button"
+                      data-clipboard-target="#sdl"
+                      type="button"
+                    >
+                      <span>
+                        <span class="clipboard">
+                          <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.5488 5.9936H1.43827C0.639144 5.9936 0 6.63274 0 7.43187V16.5617C0 17.3406 0.639144 18 1.43827 18H10.5681C11.347 18 12.0064 17.3609 12.0064 16.5617L12.0072 7.43187C11.9869 6.63274 11.3477 5.9936 10.5486 5.9936H10.5488ZM10.7883 16.5423C10.7883 16.6625 10.6884 16.7624 10.5683 16.7624L1.43839 16.7616C1.31821 16.7616 1.21831 16.6617 1.21831 16.5415L1.21909 7.43185C1.21909 7.31167 1.31898 7.21177 1.43917 7.21177H10.569C10.6892 7.21177 10.7891 7.31166 10.7891 7.43185L10.7883 16.5423Z" fill="currentColor"/>
+                            <path d="M15.3437 0.000119842H6.2332C5.43407 0.000119842 4.79492 0.639264 4.79492 1.43839V4.79494H5.99362V1.43839C5.99362 1.31821 6.09351 1.21831 6.2137 1.21831H15.3436C15.4637 1.21831 15.5636 1.3182 15.5636 1.43839V10.5683C15.5636 10.6884 15.4637 10.7883 15.3436 10.7883H13.1857V11.987H15.3436C16.1224 11.987 16.7818 11.3479 16.7818 10.5488V1.43827C16.7818 0.639144 16.1427 0 15.3436 0L15.3437 0.000119842Z" fill="currentColor"/>
+                            </svg>
+
+                        </span>
+                        <span>Copy</span>
+                      </span>
+                    </button>
+                  </div>
+                  <div class="codedemo-codeResult">
+                    <div class="codedemo-code">
+                      <pre id="sdl" x-text="message"></pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+        </form>
       </div>
     </main>
+    <footer class="app-footer">
+      <div class="container">
+        <small>&copy; 2021 StepZen, Inc.</small>
+
+        <nav class="app-footer-nav">
+          <h2>Connect</h2>
+          <ul class="social-nav">
+            <li>
+              <a
+                href="https://discord.gg/9k2VdPn2FR"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Connect on Discord"
+              >
+                Discord
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://github.com/steprz"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="StepZen on GitHub"
+              >
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://twitter.com/stepzen_dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Connect on Twitter"
+              >
+                Twitter
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+    </div>
+    
     <script>
       var cb = new ClipboardJS("#copy-button");
       // create the editor

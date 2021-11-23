@@ -1,0 +1,122 @@
+
+
+.app-header {
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  gap: var(--spacer);
+  padding: var(--spacer) 0 var(--spacer-half);
+}
+
+.ace_gutter {
+  display: none !important;
+}
+
+.ace-jsoneditor .ace_scroller {
+  background-color: transparent !important;
+}
+
+.ace-jsoneditor.ace_editor {
+  background: transparent !important;
+}
+
+.ace-jsoneditor .ace_marker-layer .ace_active-line {
+  background: none;
+}
+
+.ace_scroller {
+  left: 0 !important;
+}
+
+.codedemo-code {
+  padding: 5px;
+}
+
+.codedemo-tab-heading {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.dark-layer {
+  background: linear-gradient(90deg, #e2fcfe 100%, rgba(226, 252, 254, 0) 100%);
+  opacity: 0.9;
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  clip-path: ellipse(97% 63% at 84% 100%);
+}
+
+pre {
+  color: lightgray;
+}
+
+.app-buttons {
+  display: flex;
+  flex-flow: row wrap;
+  gap: var(--spacer-half);
+}
+
+.ace_text-layer {
+  color: #c7c7c8;
+}
+
+.ace-jsoneditor .ace_variable {
+  color: #cbcbcc;
+}
+
+.ace-jsoneditor .ace_string {
+  color: #7ac097;
+}
+.ace-jsoneditor .ace_value {
+  color: #7ac097;
+}
+
+.ace-jsoneditor .ace_constant.ace_numeric {
+  color: #dd854c;
+}
+
+.codedemo-code {
+  color: white;
+}
+#form-span {
+  margin: 0 1rem;
+}
+
+.color-g {
+  color: #292929;
+  opacity: 0.6;
+}
+
+.clipboard {
+  font-size: 20px;
+  margin: -5px auto;
+}
+
+#sdl {
+  padding: 2px;
+}
+
+.ace-jsoneditor .ace_indent-guide {
+  background: transparent;
+}
+
+.codedemo-form {
+  width: 100%;
+  display: block;
+}
+
+.ace-jsoneditor .ace_cursor {
+  border-left: 2px solid #FFFFFF;
+}
+
+.ace-jsoneditor .ace_marker-layer .ace_selection {
+  background: rgba(178,207,249, .3)
+}
+
+@media screen and (max-width: 600px) {
+  .codedemo-input {
+    margin-bottom: 20px;
+  }
+}
