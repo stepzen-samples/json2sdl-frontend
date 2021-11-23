@@ -3,21 +3,29 @@
 
   display: flex;
   flex-flow: row wrap;
+  gap: var(--spacer-half);
 
-  margin: 0 0 0.8rem calc(var(--gap) * -1);
+  margin: 0;
   padding: 0;
 }
 
 .social-nav li {
-  margin: 0 var(--gap) var(--gap);
+  display: flex;
+  align-items: center;
   list-style: none;
 }
 
 .social-nav a {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  color: var(--color8);
   transition: var(--anim);
 }
 
+.social-nav a:hover {
+  color: var(--color2);
+}
+
 .social-nav .discord {
-  transform: translateY(3px); /* Discord logo is not visually centered */
+  transform: translateY(2px); /* Discord logo is not visually centered */
 }

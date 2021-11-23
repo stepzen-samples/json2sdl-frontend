@@ -4,9 +4,9 @@
   display: flex;
   align-items: center;
   flex-flow: row wrap;
-  justify-content: space-between;
-  gap: var(--spacer);
-  padding: var(--spacer) 0 var(--spacer-half);
+  justify-content: center;
+  gap: var(--spacer-half);
+  padding: var(--spacer) 0 var(--spacer);
 }
 
 .ace_gutter {
@@ -27,6 +27,10 @@
 
 .ace_scroller {
   left: 0 !important;
+}
+
+.codedemo-tab {
+  border-bottom: 1px solid #FFFFFF10;
 }
 
 .codedemo-code {
@@ -79,7 +83,9 @@ pre {
 
 .codedemo-code {
   color: white;
+  min-height: 8rem;
 }
+
 #form-span {
   margin: 0 1rem;
 }
@@ -115,8 +121,50 @@ pre {
   background: rgba(178,207,249, .3)
 }
 
-@media screen and (max-width: 600px) {
-  .codedemo-input {
-    margin-bottom: 20px;
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main,
+main .container,
+.codedemo-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.codedemo {
+  flex: 1;
+}
+
+.app-footer {
+  padding: var(--spacer-half) 0 var(--spacer);
+}
+
+.app-footer .container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.app-footer-nav {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: var(--spacer-half);
+}
+
+.app-footer-nav h2 {
+  margin: 0;
+  font-size: .9rem;
+  font-weight: bold;
+}
+
+@media screen and (min-width:600px) {
+  .app-header {
+    justify-content: space-between;
+    padding-bottom: var(--spacer-half);
   }
 }

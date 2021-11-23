@@ -16,6 +16,7 @@
 @import url("./elements/typography.css");
 @import url("./elements/button.css");
 
+@import url("./components/alert.css");
 @import url("./components/code-demo.css");
 @import url("./components/social-nav.css");
 
