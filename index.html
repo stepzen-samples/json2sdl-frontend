@@ -47,7 +47,7 @@
     <link rel="stylesheet" href="./assets/css/custom.css" />
   </head>
 
-  <body class="no-scroll">
+  <body>
     <div class="app">
       <main>
 
@@ -79,13 +79,14 @@
               alt="JSON2SDL"
               height="50" />
 
-            
             <button
               id="form-button"
-              @click.self="handleClick()"
               class="button color11"
             >
-              <span>Start with an example</span>
+              <span
+                @click.self="handleClick()"
+              >Start with an example
+              </span>
             </button>
           </header>
 
