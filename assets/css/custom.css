@@ -9,7 +9,7 @@
   padding: var(--spacer) 0 var(--spacer);
 }
 
-.ace_gutter {
+.ace_gutter, .ace_mobile-menu {
   display: none !important;
 }
 
@@ -30,7 +30,7 @@
 }
 
 .codedemo-tab {
-  border-bottom: 1px solid #FFFFFF10;
+  align-items: baseline;
 }
 
 pre {
@@ -157,6 +157,9 @@ pre {
 @media (min-width: 720px) {
   .app-footer-nav {
     flex-flow: row wrap;
+  }
+  .codedemo-tab {
+    border-bottom: 1px solid #FFFFFF10;
   }
 }
 
