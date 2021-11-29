@@ -9,7 +9,7 @@
   padding: var(--spacer) 0 var(--spacer);
 }
 
-.ace_gutter {
+.ace_gutter, .ace_mobile-menu {
   display: none !important;
 }
 
@@ -30,7 +30,7 @@
 }
 
 .codedemo-tab {
-  border-bottom: 1px solid #FFFFFF10;
+  align-items: baseline;
 }
 
 pre {
@@ -106,12 +106,6 @@ pre {
 }
 
 @media screen and (max-width: 599px) {
-  .codedemo-input {
-    margin-bottom: 20px;
-  }
-  .codedemo-display {
-    max-height: 230px;
-  }
   .no-scroll {
     height: calc(100vh + 50px);
   }
@@ -130,6 +124,18 @@ pre {
   gap: var(--spacer-half);
 }
 
+.app-footer .container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.app-footer-nav h2 {
+  margin: 0;
+  font-size: .9rem;
+  font-weight: bold;
+}
+
 .app-footer {
   padding: var(--spacer-half) 0 var(--spacer);
 }
@@ -138,19 +144,23 @@ pre {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  align-items: center;
 }
 
 .app-footer-nav {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column;
   align-items: center;
   gap: var(--spacer-half);
 }
 
-.app-footer-nav h2 {
-  margin: 0;
-  font-size: .9rem;
-  font-weight: bold;
+@media (min-width: 720px) {
+  .app-footer-nav {
+    flex-flow: row wrap;
+  }
+  .codedemo-tab {
+    border-bottom: 1px solid #FFFFFF10;
+  }
 }
 
 @media screen and (min-width: 560px) {
