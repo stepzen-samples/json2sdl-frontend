@@ -1,0 +1,116 @@
+.button {
+  --btn-bg: var(--btn-primary-color);
+  --btn-color: #fff;
+  --btn-border: var(--btn-bg);
+  --btn-radius: var(--elem-radius, 4px);
+
+  appearance: none;
+
+  display: inline-block;
+  max-width: var(--btn-max-width);
+  padding: 0;
+  border: none;
+  background: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.button > span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1ch;
+
+  min-width: 8ch;
+  height: var(--input-height);
+  padding-right: 0.8rem;
+  padding-left: 0.8rem;
+
+  border: 2px solid var(--btn-border);
+  border-radius: var(--elem-radius);
+  background: var(--btn-bg);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--btn-color);
+}
+
+.button:hover {
+  --btn-bg: var(--color2);
+  --btn-border: var(--btn-bg);
+  --btn-color: #fff;
+}
+
+.button:hover > span {
+  transition: var(--anim);
+}
+
+.button.secondary {
+  --btn-bg: transparent;
+  --btn-color: var(--btn-secondary-color);
+  --btn-border: var(--btn-color);
+}
+
+.button.secondary:hover {
+  --btn-bg: var(--btn-color);
+  color: #FFF;
+}
+
+.button.small > span {
+  height: calc(var(--input-height) * 3 / 4);
+  font-size: 0.85rem;
+}
+
+.button.medium > span {
+  padding-right: 1.2rem;
+  padding-left: 1.2rem;
+  height: calc(var(--input-height) * 1.2);
+  font-size: 1.2rem;
+}
+
+.button.color11 {
+  --btn-bg: var(--color11);
+  --btn-color: #fff;
+}
+
+
+.button.secondary.color11 {
+  --btn-bg: transparent;
+  --btn-color: var(--color11);
+  --btn-border: var(--color11);
+}
+
+.button.secondary.color-white {
+  --btn-color: #FFF;
+  --btn-border: #FFF;
+}
+
+.button.secondary.color-white:hover {
+  --btn-bg: #FFF;
+  --btn-color: var(--color1);
+}
+
+.button-subtext {
+  font-size: 0.7rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.button-subtext {
+  display: block;
+  margin-bottom: .3rem;
+  font-size: 0.65rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.button-group {
+  display: grid;
+  gap: var(--spacer-2) var(--spacer-half);
+  padding: 0;
+}

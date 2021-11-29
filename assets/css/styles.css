@@ -11,20 +11,17 @@
 
 @import url("reset.css");
 
-@import url("elements/typography.css");
-@import url("elements/button.css");
-@import url("elements/forms.css");
+@import url("./skeleton/layout.css");
 
-@import url("skeleton/layout.css");
-@import url("skeleton/header.css");
-@import url("skeleton/footer.css");
+@import url("./elements/typography.css");
+@import url("./elements/button.css");
 
-@import url("components/code-demo.css");
-@import url("components/hero.css");
-@import url("components/social-nav.css");
-@import url("components/stickers.css");
+@import url("./components/alert.css");
+@import url("./components/code-demo.css");
+@import url("./components/social-nav.css");
 
-@import url("utilities/color.css");
+@import url("./utilities/color.css");
+@import url("./utilities/helpers.css");
 
 :root {
   /* Grid & Spacing */
