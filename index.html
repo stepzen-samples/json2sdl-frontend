@@ -108,7 +108,8 @@
                       </span>
                     </button>
                   </div>
-                  <div class="codedemo-codeWrap">
+                  <div class="codedemo-codeWrap" onclick="removePlaceholder()">
+                    <pre id="json-placeholder"></pre>
                     <div class="codedemo-code">
                       <div id="jsoneditor"></div>
                     </div>
@@ -198,15 +199,27 @@
       </div>
     </footer>
     </div>
-    
     <script>
-      var cb = new ClipboardJS("#copy-button");
+      const cb = new ClipboardJS("#copy-button");
+      
+      // Display placeholder and remove on click.
+      const placeholder = {
+        "step1": "Paste or type in your JSON here",
+        "step2": "Press [Convert] to get SDL ->"
+      }
+      
+      document.getElementById("json-placeholder").textContent = JSON.stringify(placeholder, undefined, 2);
+      
+      function removePlaceholder() {
+        document.getElementById("json-placeholder").style.display = "none";
+        document.getElementById("json-placeholder").style.visibility = "hidden";
+      }
+      
       // create the editor
       const container = document.getElementById("jsoneditor");
       const options = { mode: "code", mainMenuBar: false };
       const editor = new JSONEditor(container, options);
-      editor.set({});
-
+      editor.set();
       function restForm() {
         return {
           rest: {
@@ -283,6 +296,9 @@
         };
       }
       function handleClick() {
+        // remove placeholder text
+        removePlaceholder()
+
         editor.set({
           id: "8bd96804-d1c5-4657-a081-0e8eb0bf3881",
           index: 56,
